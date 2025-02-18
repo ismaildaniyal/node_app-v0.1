@@ -31,7 +31,7 @@ jobs:
         run: docker compose down
   deploy:
     needs: build
-    runs-on: ubunut-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
@@ -39,7 +39,8 @@ jobs:
       - name: Set Up Docker
         uses: docker/setup-buildx-action@v3
       - name: Log in to docker Hub
-        run: echo ""${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
       - name: Tag and Push Image to Docker Hub
         run: |
           docker tag ismaildaniyal/node_app:latest ${{ secrets.DOCKER_USERNAME }}/node_app:latest
