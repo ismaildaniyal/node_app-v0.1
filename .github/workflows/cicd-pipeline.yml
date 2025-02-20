@@ -24,4 +24,4 @@ jobs:
         run: docker tag "${{ secrets.DOCKERHUB_USERNAME }}/node_app:latest" "${{ secrets.DOCKERHUB_USERNAME }}/node_app:latest"
 
       - name: Push the Image
-        run: docker push "${{ secrets.DOCKERHUB_USERNAME }}/node_app:latest"
+        run: docker push "${{ secrets.DOCKERHUB_USERNAME }}/node_app:latest"  
