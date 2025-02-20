@@ -52,5 +52,5 @@ jobs:
 
       - name: Tag and Push Image to Docker Hub
         run: |
-          docker tag ${{ secrets.DOCKER_USERNAME }}/node_app:latest ${{ secrets.DOCKER_USERNAME }}/node_app:latest
+          docker tag ismaildaniyal/node_app:latest ${{ secrets.DOCKER_USERNAME }}/node_app:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/node_app:latest
