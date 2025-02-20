@@ -23,7 +23,7 @@ jobs:
 
 
       - name: Build the Docker Image
-        run: docker build -t "$ismaildaniyal/node_app" .
+        run: docker build -t "$ismaildaniyal/node_app:latest" .
 
       - name: Tag the Image
         run: docker tag "ismaildaniyal/node_app:latest" "${{ secrets.DOCKER_USERNAME }}/node_app:latest"
