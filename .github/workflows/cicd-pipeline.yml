@@ -23,10 +23,10 @@ jobs:
 
 
       - name: Build the Docker Image
-        run: docker build -t "${{ secrets.DOCKERHUB_USERNAME }}/node_app" .
+        run: docker build -t "$ismaildaniyal/node_app" .
 
       - name: Tag the Image
-        run: docker tag "${{ secrets.DOCKER_USERNAME }}/node_app:latest" "${{ secrets.DOCKER_USERNAME }}/node_app:latest"
+        run: docker tag "ismaildaniyal/node_app:latest" "${{ secrets.DOCKER_USERNAME }}/node_app:latest"
 
       - name: Push the Image
         run: docker push "${{ secrets.DOCKER_USERNAME }}/node_app"
