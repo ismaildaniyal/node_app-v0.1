@@ -15,18 +15,18 @@ jobs:
 
 
       - name: Debug Secrets
-        run: echo "DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}"
+        run: echo "DOCKERHUB_USERNAME=${{ secrets.DOCKER_PASSWORD }}"
 
 
       - name: Log in to Docker Hub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME}}" --password-stdin
 
 
       - name: Build the Docker Image
         run: docker build -t "${{ secrets.DOCKERHUB_USERNAME }}/node_app" .
 
       - name: Tag the Image
-        run: docker tag "${{ secrets.DOCKERHUB_USERNAME }}/node_app" "${{ secrets.DOCKERHUB_USERNAME }}/node_app"
+        run: docker tag "${{ secrets.DOCKER_USERNAME }}/node_app" "${{ secrets.DOCKER_USERNAME }}/node_app"
 
       - name: Push the Image
-        run: docker push "${{ secrets.DOCKERHUB_USERNAME }}/node_app"  
+        run: docker push "${{ secrets.DOCKER_USERNAME }}/node_app"  
