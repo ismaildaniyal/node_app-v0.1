@@ -54,7 +54,3 @@ jobs:
         run: |
           docker tag ${{ secrets.DOCKER_USERNAME }}/node_app:latest ${{ secrets.DOCKER_USERNAME }}/node_app:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/node_app:latest
-
-      - name: Deploy to Server (Optional)
-        run: |
-          ssh user@server "docker pull ${{ secrets.DOCKER_USERNAME }}/node_app:latest && docker compose up -d"

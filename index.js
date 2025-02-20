@@ -18,6 +18,10 @@ app.get('/hello', (req, res) => {
   res.send('Hello you running thehelo api');
 });
 
+app.get('/test', (req, res) => {
+  res.send('test');
+});
+
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
