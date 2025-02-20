@@ -1,4 +1,4 @@
-name:ismaildaniyal/node_app
+name: ismaildaniyal/node_app
 
 on:
    push:
@@ -13,22 +13,29 @@ jobs:
     
     steps:
       - name: Checkout Code
-        uses: actions/checkou@v4
+        uses: actions/checkout@v4
+
       - name: Set Up Docker
         uses: docker/setup-buildx-action@v3
-      - name: Build Docker Images
+
+      - name: Build and Tag Docker Image
         run: |
-          docker compose build
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/node_app:latest .
+
       - name: Run Containers
         run: |
           docker compose up -d
+
       - name: Wait for Containers to Start
         run: sleep 10
+
       - name: Run Tests
         run: |
           docker exec node_container npm test
-      - name; Stop Containers
+
+      - name: Stop Containers
         run: docker compose down
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -36,16 +43,18 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
       - name: Set Up Docker
         uses: docker/setup-buildx-action@v3
-      - name: Log in to docker Hub
+
+      - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Tag and Push Image to Docker Hub
         run: |
-          docker tag ismaildaniyal/node_app:latest ${{ secrets.DOCKER_USERNAME }}/node_app:latest
+          docker tag ${{ secrets.DOCKER_USERNAME }}/node_app:latest ${{ secrets.DOCKER_USERNAME }}/node_app:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/node_app:latest
+
       - name: Deploy to Server (Optional)
         run: |
           ssh user@server "docker pull ${{ secrets.DOCKER_USERNAME }}/node_app:latest && docker compose up -d"
-
