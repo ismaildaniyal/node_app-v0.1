@@ -13,6 +13,11 @@ app.get('/', (req, res) => {
     res.send('MongoDB is connected successfully');
 });
 
+
+app.get('/hello', (req, res) => {
+  res.send('Hello you running thehelo api');
+});
+
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
