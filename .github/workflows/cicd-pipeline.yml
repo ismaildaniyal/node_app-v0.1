@@ -17,10 +17,10 @@ jobs:
         run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
       - name: Build the Docker Image
-        run: docker build -t first_project:latest .
+        run: docker build -t node_app:latest .
 
       - name: Tag the Image
-        run: docker tag first_project:latest "${{ secrets.DOCKERHUB_USERNAME }}/first_project:latest"
+        run: docker tag node_app:latest "${{ secrets.DOCKERHUB_USERNAME }}/node_app:latest"
 
       - name: Push the Image
         run: docker push "${{ secrets.DOCKERHUB_USERNAME }}/first_project:latest"
