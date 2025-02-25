@@ -60,5 +60,5 @@ sudo docker run -d --name node_container --network=my_network -p 3000:3000 node_
 - Use **Docker Compose** for easier container management.
 
 ## Author
-- **Your Name** (@ismaildaniyal)
+- **Your Name** @ismaildaniyal
 
