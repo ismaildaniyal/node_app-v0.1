@@ -29,19 +29,14 @@ Make sure you have the following installed:
 sudo docker build -t node_app .
 ```
 
-### 2. Create a Network for Communication
+### 2. Run MongoDB in a Container
 ```bash
-sudo docker network create my_network
+sudo docker run -d --name mongodb mongo
 ```
 
-### 3. Run MongoDB in a Container
+### 3. Run the Node.js Application in a Container
 ```bash
-sudo docker run -d --name mongodb --network=my_network mongo
-```
-
-### 4. Run the Node.js Application in a Container
-```bash
-sudo docker run -d --name node_container --network=my_network -p 3000:3000 node_app
+sudo docker run -d --name node_container -p 3000:3000 node_app
 ```
 
 ## Verifying the Setup
@@ -55,10 +50,14 @@ sudo docker run -d --name node_container --network=my_network -p 3000:3000 node_
   ```
 - **Access the application:** Open your browser and go to `http://localhost:3000`
 
+## CI/CD Pipeline
+The **CI/CD pipeline** has been successfully implemented to automate testing and deployment. The pipeline includes:
+- **Automated builds** triggered on code changes.
+- **Continuous integration** with unit testing.
+- **Continuous deployment** to ensure seamless updates.
+
 ## Next Steps
-- Implement a **CI/CD pipeline** for automated deployment.
-- Use **Docker Compose** for easier container management.
+- Move on to the next phase of development and optimizations.
 
 ## Author
 - **Your Name** ismaildaniyal
-
